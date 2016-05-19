@@ -18,6 +18,9 @@ function startGame(){
 	currentWordEl.textContent = randomWord;
   document.addEventListener("keypress", function(event) {
 		console.log(event.which);
+		if(counter === 10){
+			alert("You have won!");
+		}
 		if(event.which == 13){
 			console.log('if enter');
 			if(wordString === randomWord){
@@ -46,13 +49,10 @@ function startGame(){
 	  	wordTyped.push(userInput);
 	  	console.log('wordtyped in else', wordTyped);
 	    wordString = wordTyped.join("");
-
-
 		}
 	});
 	addReset();
 }
-
 function addPicture(box){
 	// var grabBox = box;
 	console.log('playerone function', box);
