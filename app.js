@@ -1,6 +1,7 @@
 window.onload = startGame;
-// var text = document.getElementById('users-word').textContent;
-var arrayOfWords = ["the", "dog", "cat", "house","mango","banana","fruit"];
+var turnText = document.querySelector(".playerTurn");
+var arrayOfWords = ["i am very confused","please help me","why can i not understand this part",
+									  "please give me advil","my head is exploding"];
 var counter = 1;
 var wordTyped = [];
 var wordString = new String();
@@ -22,20 +23,24 @@ function startGame(){
 			// document.getElementById("users-word.").textContent = "testing";
 				wordTyped = [];
 				console.log('when entered from if', wordTyped);
+				printUserInput();
 				carForward();
 				startGame();
+
+
 			} else { // user presses enter but word is incorrect
 				wordTyped=[];
 			}
 		//console.log("You are correct!");
 		} else {
-
+			wordType=[];
 	  	var userInput = String.fromCharCode(event.which).toLowerCase();
 	  	console.log("user typed:", userInput);
 
 	  	wordTyped.push(userInput);
 	  	console.log('wordtyped in else', wordTyped);
 	    wordString = wordTyped.join("");
+
 
 		}
 	});
@@ -55,23 +60,25 @@ function carForward(){
 	addPicture(forward);
 }
 
+function printUserInput() {
+	turnText.textContent = wordString;
+}
+
 
 
 ///////// RESET PART /////////////
 function addReset(){
-	var reset = document.getElementById('reset');
+	var startOver = document.getElementById('reset');
 	reset.addEventListener('click', restartGame);
 }
 
 function restartGame(){
 	console.log('clicked');
+	turnText.textContent = "You have typed lol";
 	location.reload();
 //counter = 1;
 
 }
 
-function usersWord(x){
-	x.getElementById("users-word");
-}
 
 
