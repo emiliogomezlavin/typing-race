@@ -4,7 +4,7 @@ var arrayOfWords = ["benjamin yang","anthony schurz","wayne bankes",
 										"valerie jones-fredericks","michael cheng", "matthew laguardia",
 										"emilio lavin","jen mcphail","jim tekanyo","michael norelli",
 										"vanessa farias","camila crawford","min kim","sam brooks","kate nelson",
-										"mike cruz","kabah conda","matthew sullivan"];
+										"mike cruz","kabah conda","matthew sullivan","ben hulan","alex white","ilias tsangaris"];
 var counter = 0;
 var wordTyped = [];
 var wordString = new String();
@@ -18,11 +18,14 @@ function startGame(){
 	currentWordEl.textContent = randomWord;
   document.addEventListener("keypress", function(event) {
 		console.log(event.which);
-		if(counter === 10){
+
+		if(counter === 20){
 			alert("You have won!");
-		}
+			}
+		
 		if(event.which == 13){
 			console.log('if enter');
+				
 			if(wordString === randomWord){
 				console.log('if correct');
 			//wordTyped = [];
@@ -51,7 +54,7 @@ function startGame(){
 	    wordString = wordTyped.join("");
 		}
 	});
-	addReset();
+	 addReset();
 }
 function addPicture(box){
 	// var grabBox = box;
