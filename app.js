@@ -59,7 +59,7 @@ function startGame(){
 function addPicture(box){
 	// var grabBox = box;
 	console.log('playerone function', box);
-	box.style.backgroundImage = "url('http://java2s.com/style/demo/border.png')";
+	box.style.backgroundImage = "url('rsz_sports-car-cartoon.png')";
 
 }
 
