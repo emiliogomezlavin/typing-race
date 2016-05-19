@@ -4,89 +4,69 @@ var arrayOfWords = ["benjamin yang","anthony schurz","wayne bankes",
 										"valerie jones-fredericks","michael cheng", "matthew laguardia",
 										"emilio lavin","jen mcphail","jim tekanyo","michael norelli",
 										"vanessa farias","camila crawford","min kim","sam brooks","kate nelson",
-										"mike cruz","kabah conda","matthew sullivan","ben hulan","alex white","ilias tsangaris","annabelle thaddeus"];
-
-// var arrayOfWords= ["annabelle"];
+										"mike cruz","kabah conda","matthew sullivan","ben hulan","alex white",
+										"ilias tsangaris","annabelle thaddeus"];
 var counter = 0;
 var wordTyped = [];
 var wordString = new String();
-var imgObj = null;
-
+var countDown;
+var countDownNumber;
 
 function startGame(){
-	// set a word
+	theGame();
+	countDownInit();
+}
+
+function theGame(){
 	
 	var wordTyped = [];
 	var currentWordEl = document.getElementById("current-word");
 	var randomWord = arrayOfWords[Math.floor(Math.random()*arrayOfWords.length)];
 	currentWordEl.textContent = randomWord;
   document.addEventListener("keypress", function(event) {
-		console.log(event.which);
-		
-
-				
 		if(event.which == 13){
-			console.log('if enter');
-				
 			if(wordString === randomWord){
-				console.log('if correct');
-			//wordTyped = [];
-			// document.getElementById("users-word.").textContent = "testing";
-
 				wordTyped = [];
 				console.log('when entered from if', wordTyped);
 				// printUserInput();
 				// turnText.textContent = "YOU CRUSHED IT!!!"
 				 carForward();
-				 // moveRight();
 				randomWord = arrayOfWords[Math.floor(Math.random()*arrayOfWords.length)];
 				currentWordEl.textContent = randomWord;
-
-
 			} else { // user presses enter but word is incorrect
 				wordTyped=[];
 				printUserInput();
+				turnText.textContent = "You have typed incorrectly! Try again!";
 				addReset();
 			}
-		//console.log("You are correct!");
 		} else {
-			//wordType=[];
-	  	var userInput = String.fromCharCode(event.which).toLowerCase();
-	  	console.log("user typed:", userInput);
-
+			var userInput = String.fromCharCode(event.which).toLowerCase();
 	  	wordTyped.push(userInput);
-	  	console.log('wordtyped in else', wordTyped);
-	    wordString = wordTyped.join("");
+	  	wordString = wordTyped.join("");
 	    printUserInput();
 		}
 	});
 	 addReset();
 }
-function addPicture(box){
-	// var grabBox = box;
-	console.log('playerone function', box);
-	box.style.backgroundImage = "url('rsz_sports-car-cartoon.png')";
 
+function addPicture(box){
+	box.style.backgroundImage = "url('rsz_sports-car-cartoon.png')";
 }
 
 function carForward(){
-	console.log(counter);
-	var forward = document.getElementById(counter.toString());
-
-	console.log('forward', forward);
-	if (counter > 0){
+		var forward = document.getElementById(counter.toString());
+		if (counter > 0){
 				var currentBox = document.getElementById((counter - 1).toString());
-				console.log('current', currentBox);
 				currentBox.style.backgroundImage = "none";
-	}
+			}
+				counter++;
+				if(counter === 10){
+				alert("You have won");
+				// clearAlert();
+				document.getElementById('countdown_text').textContent = "hit restart to play again!";
 
-	counter = counter + 1;
-if(counter === 10){
-	alert("You have won");
-}
-
-	// console.log(forward);
-	addPicture(forward);
+			}
+			addPicture(forward);
 }
 
 function printUserInput() {
@@ -99,13 +79,38 @@ function addReset(){
 }
 
 function restartGame(){
-location.reload();
-var counter=0;
+		location.reload();
+		var counter=0;
 }
 
+function countDownInit() {
+	countDownNumber = 5;
+	countDownTrigger();
+}
 
+function countDownTrigger(){
+	if(countDownNumber > 0 && counter < 10){
+			countDownNumber--;
+			document.getElementById('countdown_text').textContent = countDownNumber + " seconds left!";
+			// if(countDownNumber > 0){
+				setTimeout(countDownTrigger, 1000);
+				}
+				else if (countDownNumber <= 0) {
+					alert("RAN OUT OF TIME!");
+					document.getElementById('countdown_text').textContent = "hit restart to play again!";
+				}
+				else if (counter == 10){
+					document.getElementById('countdown_text').textContent = "hit restart to play again!";
 
+				}
+		// }
 
+		
+}
+
+function clearAlert(){
+	window.clearTimeout("countdown_text");
+}
 
 
 
