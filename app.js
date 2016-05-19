@@ -1,8 +1,11 @@
 window.onload = startGame;
 var turnText = document.querySelector(".playerTurn");
-var arrayOfWords = ["i am very confused","please help me","why can i not understand this part",
-									  "please give me advil","my head is exploding"];
-var counter = 1;
+var arrayOfWords = ["valerie","jim","ben","michael norelli", 
+										"vanessa","anthony","michael cheng","kate",
+										"wayne","kabah","matt laguardia","camila","min",
+										"mike cruz","emilio","jen","sam","matthew sullivan",
+										"mango","apples","juice box","i want candy"];
+var counter = 0;
 var wordTyped = [];
 var wordString = new String();
 
@@ -21,6 +24,7 @@ function startGame(){
 				console.log('if correct');
 			//wordTyped = [];
 			// document.getElementById("users-word.").textContent = "testing";
+
 				wordTyped = [];
 				console.log('when entered from if', wordTyped);
 				printUserInput();
@@ -30,6 +34,7 @@ function startGame(){
 
 			} else { // user presses enter but word is incorrect
 				wordTyped=[];
+				printUserInput();
 			}
 		//console.log("You are correct!");
 		} else {
@@ -55,8 +60,9 @@ function addPicture(box){
 }
 
 function carForward(){
-	var forward = document.getElementById(counter);
+	var forward = document.getElementById(counter.toString());
 	counter++;
+	console.log(forward);
 	addPicture(forward);
 }
 
