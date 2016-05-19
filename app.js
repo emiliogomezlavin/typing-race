@@ -1,10 +1,10 @@
 window.onload = startGame;
 var turnText = document.querySelector(".playerTurn");
-var arrayOfWords = ["valerie","jim","ben","michael norelli", 
-										"vanessa","anthony","michael cheng","kate",
-										"wayne","kabah","matt laguardia","camila","min",
-										"mike cruz","emilio","jen","sam","matthew sullivan",
-										"mango","apples","juice box","i want candy"];
+var arrayOfWords = ["benjamin yang","anthony schurz","wayne bankes",
+										"valerie jones-fredericks","michael cheng", "matthew laguardia",
+										"emilio lavin","jen mcphail","jim tekanyo","michael norelli",
+										"vanessa farias","camila crawford","min kim","sam brooks","kate nelson",
+										"mike cruz","kabah conda","matthew sullivan"];
 var counter = 0;
 var wordTyped = [];
 var wordString = new String();
@@ -29,7 +29,8 @@ function startGame(){
 				console.log('when entered from if', wordTyped);
 				printUserInput();
 				carForward();
-				startGame();
+				randomWord = arrayOfWords[Math.floor(Math.random()*arrayOfWords.length)];
+				currentWordEl.textContent = randomWord;
 
 
 			} else { // user presses enter but word is incorrect
@@ -38,7 +39,7 @@ function startGame(){
 			}
 		//console.log("You are correct!");
 		} else {
-			wordType=[];
+			//wordType=[];
 	  	var userInput = String.fromCharCode(event.which).toLowerCase();
 	  	console.log("user typed:", userInput);
 
@@ -79,10 +80,8 @@ function addReset(){
 }
 
 function restartGame(){
-	console.log('clicked');
-	turnText.textContent = "You have typed lol";
-	location.reload();
-//counter = 1;
+location.reload();
+var counter=0;
 
 }
 
