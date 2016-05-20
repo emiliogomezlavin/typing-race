@@ -4,13 +4,13 @@ table{
  	width:500px;
 }
  div{
- 	height:100px;
- 	width: 100px;
+ 	height:40px;
+ 	width: 40px;
  	text-align: center;
  	margin-bottom: 0px;
  	font-size: 120px;
- 	border: 2px solid blue;
- 	color: blue;
+/* 	border: 2px solid blue;
+*/ 	color: blue;
  }
 .box{
 	height: 50px;
@@ -19,12 +19,13 @@ table{
 
 }
 .grid{
+	display: inline-block;
 	height:100px;
- 	width: 100px;
+ 	width: 50px;
  	text-align: center;
  	margin-bottom: 0px;
  	font-size: 120px;
- 	border: 2px solid blue;
+ /*	border: 2px solid blue;*/
  	color: blue;
 }
 h1{
@@ -32,6 +33,7 @@ h1{
 }
 h2{
 	text-align: center;
+	color: red;
 }
 h3{
 	text-align: center;
@@ -39,3 +41,124 @@ h3{
 h4{
 	text-align: center;
 }
+#pix{
+  background-image: url("finish.jpg");
+}
+
+
+
+
+@import "compass/css3";
+
+$n-levels: 13;
+$n-edges: 4;
+$a: 2.5em;
+$t: 5s;
+
+$base-angle: 360deg/$n-edges;
+
+html {
+  overflow: hidden;
+  background: #222;
+  color: white;
+  
+  &:after {
+    $dim: $n-levels*$a;
+    position: absolute;
+    top: 50%; left: 50%;
+    margin: -$dim/2;
+    width: $dim; height: $dim;
+    box-shadow: 0 0 0 50vmax;
+    content: '';
+  }
+}
+
+.assembly {
+  &, *, :before {
+    position: absolute;
+    top: 50%; left: 50%;
+  }
+  
+  animation: rot $t linear infinite;
+}
+
+.square {
+  
+  $n: 1;
+  
+  @for $l from 1 to $n-levels {
+    
+    $n-level: $l*$n-edges;
+    $level-angle: $base-angle/$l;
+    
+    &:nth-child(n + #{$n + 1}):before {
+      animation-name: ani#{$l};
+    }
+    
+    @at-root {
+      @keyframes ani#{$l} {
+        #{($l + 1)/$n-levels*90%}, 100% {
+          transform: rotate($base-angle/2) 
+            scale(if($l%2 == 0, 1, 0));
+        }
+      }
+    }
+    
+    @for $i from 0 to $n-level {
+      
+      $poly-ir: $l*$a;
+      $poly-cr: $poly-ir/cos($base-angle/2);
+      $poly-edge: 2*$poly-cr*sin($base-angle/2);
+      $j: $i%$l;
+      $poly-edge-diff: abs($j - $l/2)*$poly-edge/$l;
+      $dist: sqrt(pow($poly-ir, 2) + pow($poly-edge-diff, 2));
+      $curr-angle: $base-angle*floor($i/$l) + atan(($j - $l/2)*$poly-edge/$l/$poly-ir);
+      
+      &:nth-child(#{$n + $i + 1}) {
+        transform: rotate($curr-angle) translate($dist) rotate(-$curr-angle);
+        animation: collapse-#{$l}-#{$i} $t ease-in infinite
+      }
+      
+      $poly-ir: $poly-ir*cos($base-angle/2);
+      $poly-cr: $poly-ir/cos($base-angle/2);
+      $poly-edge: 2*$poly-cr*sin($base-angle/2);
+      $poly-edge-diff: abs($j - $l/2)*$poly-edge/$l;
+      $dist: sqrt(pow($poly-ir, 2) + pow($poly-edge-diff, 2));
+      
+      @at-root {
+        @keyframes collapse-#{$l}-#{$i} {
+          #{($l + 1)/$n-levels*90%}, 100% {
+            transform: rotate($curr-angle) translate($dist) rotate(-$curr-angle);
+          }
+        }
+      }
+      
+    }
+    
+    $n: $n + $n-level;
+    
+  }
+  
+  content: $n;
+  
+  &:before {
+    margin: -$a/2;
+    width: $a; height: $a;
+    background: white;
+    animation: ani0 $t linear infinite;
+    content: '';
+  }
+}
+
+@keyframes ani0 {
+  #{1/$n-levels*90%}, 100% {
+    transform: rotate($base-angle/2);
+  }
+}
+
+@keyframes rot {
+  to {
+    transform: rotate($base-angle/2) //scale(cos($base-angle/2));
+  }
+}
+
