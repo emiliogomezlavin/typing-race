@@ -24,7 +24,7 @@ function theGame(){
 	var randomWord = arrayOfWords[Math.floor(Math.random()*arrayOfWords.length)];
 	currentWordEl.textContent = randomWord;
   document.addEventListener("keypress", function(event) {
-		if(event.which == 13){
+		if(event.which == 13 && countDownNumber > 0){
 			if(wordString === randomWord){
 				wordTyped = [];
 				console.log('when entered from if', wordTyped);
@@ -84,7 +84,7 @@ function restartGame(){
 }
 
 function countDownInit() {
-	countDownNumber = 60;
+	countDownNumber = 2;
 	countDownTrigger();
 }
 
