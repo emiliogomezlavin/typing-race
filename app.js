@@ -1,11 +1,11 @@
 window.onload = startGame;
 var turnText = document.querySelector(".playerTurn");
 var arrayOfWords = ["benjamin yang","anthony schurz","wayne bankes",
-										"valerie jones-fredericks","michael cheng", "matthew laguardia",
-										"emilio lavin","jen mcphail","jim tekanyo","michael norelli",
-										"vanessa farias","camila crawford","min kim","sam brooks","kate nelson",
-										"mike cruz","kabah conda","matthew sullivan","ben hulan","alex white",
-										"ilias tsangaris","annabelle thaddeus"];
+					"valerie jones-fredericks","michael cheng", "matthew laguardia",
+					"emilio lavin","jen mcphail","jim tekanyo","michael norelli",
+					"vanessa farias","camila crawford","min kim","sam brooks","kate nelson",
+					"mike cruz","kabah conda","matthew sullivan","ben hulan","alex white",
+					"ilias tsangaris","annabelle thaddeus"];
 var counter = 0;
 var wordTyped = [];
 var wordString = new String();
@@ -50,7 +50,7 @@ function theGame(){
 }
 
 function addPicture(box){
-	box.style.backgroundImage = "url('rsz_sports-car-cartoon.png')";
+	box.style.backgroundImage = "url('runner.gif')";
 }
 
 function carForward(){
@@ -60,7 +60,7 @@ function carForward(){
 				currentBox.style.backgroundImage = "none";
 			}
 				counter++;
-				if(counter === 10){
+				if(counter === 20){
 				alert("You have won");
 				// clearAlert();
 				document.getElementById('countdown_text').textContent = "hit restart to play again!";
@@ -84,12 +84,12 @@ function restartGame(){
 }
 
 function countDownInit() {
-	countDownNumber = 5;
+	countDownNumber = 60;
 	countDownTrigger();
 }
 
 function countDownTrigger(){
-	if(countDownNumber > 0 && counter < 10){
+	if(countDownNumber > 0 && counter < 20){
 			countDownNumber--;
 			document.getElementById('countdown_text').textContent = countDownNumber + " seconds left!";
 			// if(countDownNumber > 0){
@@ -97,15 +97,12 @@ function countDownTrigger(){
 				}
 				else if (countDownNumber <= 0) {
 					alert("RAN OUT OF TIME!");
-					document.getElementById('countdown_text').textContent = "hit restart to play again!";
+					document.getElementById('countdown_text').textContent = "Hit Restart to Play Again!";
 				}
-				else if (counter == 10){
+				else if (counter == 20){
 					document.getElementById('countdown_text').textContent = "hit restart to play again!";
 
 				}
-		// }
-
-		
 }
 
 function clearAlert(){
