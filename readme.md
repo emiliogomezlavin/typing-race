@@ -1,4 +1,7 @@
 #Typing Race Game
 
-Technologies used: javascript
+##Technologies used: javascript
+
+
+
 
