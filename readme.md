@@ -1,3 +1,4 @@
 #Typing Race Game
 
-More to come...
+Technologies used: javascript
+
